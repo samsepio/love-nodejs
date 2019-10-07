@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+        <head>
+                <meta charset="utf-8">
+                <meta name="author"content="walter">
+                <title>WorkColombia</title>
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        </head>
+	<body>
+		 <nav class="navbar navbar-dark bg-dark">
+                        <a class="navbar-brand"href="/">salir</a>
+                </nav>
+		<br>
+		<div class="container p-4">
+			<div class="row">
+				<div class="card-columns">
+					<% profiles.forEach(function (image) { %>
+						<div class="card" style="width: 18rem;">
+							<img src="<%= image.path  %>" class="card-img-top" alt="<%= image.filename  %>">
+							<div class="card-body">
+								<h5 class="card-text"><%= image.name  %> <%= image.last  %></h5>
+								<a href="/edit/<%= image._id %>"class="btn btn-primary btn-block">Completar Perfil</a>
+								<a href="/delete/<%= image._id  %>" class="btn btn-danger btn-block">Eliminar Perfil</a>
+							</div>
+						</div>
+					<% }) %>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
