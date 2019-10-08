@@ -31,6 +31,10 @@ const storage = multer.diskStorage({
 app.use(multer({
 	storage
 }).single('image'));
+app.use((req,es,next) => {
+	app.locals.format = format;
+	next();
+});
 app.use(require('./routes'));
 
 app.use(express.static(path.join(__dirname,'./public')));

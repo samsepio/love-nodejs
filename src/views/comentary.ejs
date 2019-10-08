@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<meta name="author"content="walter">
+		<title>loveC</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	</head>
+	<body>
+		<nav class="navbar navbar-dark bg-dark">
+                        <a class="navbar-brand"href="/work">Atras</a>
+                        <a class="navbar-brand mx-auto"href="/">salir</a>
+                </nav>
+		<br>
+		<center><h3>Comentarios De Este Perfil</h3></center>
+		<div class="card" style="width: 18rem;">
+			<% comentarys.forEach(function (comentary) { %>
+			<div class="card-body">
+				<p class="card-text"><%= comentary.comentary  %></p>
+				<a href="/gusta/<%= comentary._id %>"class="btn btn-dark">Me Gusta</a>
+				<a href="/Ngusta/<%= comentary._id %>"class="btn btn-danger">No Me gusta</a>
+			</div>
+			<% }) %>
+		</div>
+	</body>
+</html>

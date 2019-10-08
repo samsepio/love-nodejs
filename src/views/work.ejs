@@ -4,6 +4,7 @@
                 <meta charset="utf-8">
                 <meta name="author"content="walter">
                 <title>WorkColombia</title>
+		<link rel="stylesheet"href="/css/main.css">
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         </head>
 	<body>
@@ -11,6 +12,7 @@
                         <a class="navbar-brand"href="/">salir</a>
                 </nav>
 		<br>
+		<center><h2>Perfiles</h2></center>
 		<div class="container p-4">
 			<div class="row">
 				<div class="card-columns">
@@ -18,9 +20,21 @@
 						<div class="card" style="width: 18rem;">
 							<img src="<%= image.path  %>" class="card-img-top" alt="<%= image.filename  %>">
 							<div class="card-body">
-								<h5 class="card-text"><%= image.name  %> <%= image.last  %></h5>
-								<a href="/edit/<%= image._id %>"class="btn btn-primary btn-block">Completar Perfil</a>
-								<a href="/delete/<%= image._id  %>" class="btn btn-danger btn-block">Eliminar Perfil</a>
+								<p class="card-text"><%= image.created_at %></p>
+								<h3 class="card-subtitle">Perfil</h3>
+								<p class="card-text">Nombre: <%= image.name  %> <%= image.last  %></h5>
+								<p class="card-text">Profesion: <%= image.profession  %> </p>
+								<p class="card-text">Religion: <%= image.religion  %></p>
+								<p class="card-text">Edad: <%= image.year  %></p>
+								<p class="card-text">Intereses: <%= image.interes %></p>
+								<a href="/friend/<%= image._id %>"class="btn <%= image.status ? 'btn-success':'btn-dark'%> btn-block">Agregar</a>
+								<br>
+								<h5 class="card-subtitle">Comenta Este Perfil</h5>
+								<form action="/comentary/<%= image._id %>"method="POST">
+									<textarea name="comentary"class="form-control"placeholder="Ingrese Su Comentario"></textarea>
+									<button class="btn btn-info">Comentar</button>
+									<a href="/comentary/<%= image._id %>"class="btn btn-primary">Ver Comentarios</a>
+								</form>
 							</div>
 						</div>
 					<% }) %>

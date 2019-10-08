@@ -7,13 +7,17 @@ const profileSchema = Schema({
 	user:{type: String},
 	year:{type: String},
 	profession:{type: String},
-	interests:{type: String},
+	interes:{type: String},
 	religion:{type: String},
 	password:{type: String},
 	originalname:{type: String},
 	filename:{type: String},
         path:{type: String},
-        create_at:{type: Date,default: Date.now()}
+        created_at:{type: Date, default: Date.now()},
+	status:{
+		type: Boolean,
+		default: false
+	}
 
 });
  
