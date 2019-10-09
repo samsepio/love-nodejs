@@ -17,30 +17,18 @@
 		<center><h1>Registrate</h1></center>
 		<div class="card mx-auto" style="width: 18rem;">
 			<div class="card-body mx-auto">
-				<form action="/signup"method="POST"enctype="multipart/form-data">
-					<label>Nombres</label>
-					<input type="text"name="name"class="form-control"placeholder="Inserte Sus Nombres">
-					<label>Apellidos</label>
-					<input type="text"name="last"class="form-control"placeholder="Inserte Sus Apellidos">
+				<form action="/signup"method="POST">
 					<label>Usuario</label>
 					<input type="text"name="user"class="from-control"placeholder="Inserte Un Usuario">
-					<label>Edad</label>
-                                        <input type="text"name="year"class="form-control"placeholder="Inserte Su Edad">
-                                        <label>Profesion</label>
-                                        <input type="text"name="profession"class="form-control"placeholder="Inserte Sus Profesion">
-                                        <label>Intereses</label>
-                                        <textarea type="text"name="interes"class="form-control"placeholder="Intereses personales"></textarea>
-                                        <label>Religion</label>
-                                        <input type="text"name="religion"class="form-control"placeholder="Inserte su Religion">
+					<!-- si existe ese mensaje que me lo muestre  !-->
+					<% if(signupMessage) { %>
+						<div><%= signupMessage  %></div>
+					<%} %>
+					<label>Email</label>
+					<input type="email"name="email"class="form-control"placeholder="Inserte Su Correo">
 					<label>Contraseña</label>
 					<input type="password"name="password"class="form-control"placeholder="Inserte Una Contraseña">
-					<label>Foto</label>
-					<div class="custom-file">
-						<input type="file" name="image" class="custom-file-input" id="inputGroupFile02">
-						<label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Seleccionar Imagen</label>
-					</div>
-					<button class="btn btn-success btn-block">Registrate</button>
-					<a href="/signin"class="card-link">Ya Tengo Una Cuenta</a>
+					<button class="btn btn-info btn-block"type="submit">Registrate</button>
 				</form>
 			</div>
 		</div>

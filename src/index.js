@@ -15,12 +15,28 @@ mongoose.connect('mongodb+srv://walter:3219329910@database1-wegwd.mongodb.net/te
 	.then(db => console.log('conectado a la base de datos'))
 	.catch(err => console.log(err));
 
+require('./passport/local-auth');
+
 app.set('puerto',process.env.PORT || 8000);
 app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'./views'));
 
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
+app.use(session({
+	secret: '#%$mysecretsession$%&',
+	resave: false,
+	saveUninitialized: false
+}));
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use((req,res,next) => {
+	//creamos local para que se pueda acceder en cualquier lugar de nuestra aplicacion y le decimos el nombre del mensaje para que me mande el contenido
+	app.locals.signupMessage = req.flash('signupMessage');
+	next();
+});
 const storage = multer.diskStorage({
 	destination: path.join(__dirname, 'public/img/uploads'),
 	limits: { fileSize: 2000000 },

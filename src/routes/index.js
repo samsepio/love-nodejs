@@ -1,6 +1,8 @@
 const express=require('express');
 const router=express.Router();
 const Profile=require('../model/profile');
+const User=require('../model/user');
+const passport=require('passport');
 const Comentary=require('../model/comentary');
 
 router.get('/',(req,res,next)=>{
@@ -8,6 +10,14 @@ router.get('/',(req,res,next)=>{
 });
 router.get('/signup',async(req,res,next)=>{
 	res.render('signup');
+});
+router.post('/signup',passport.authenticate('local-signup',{
+	successRedirect: '/perfil',
+	failureRedirect: '/signup',
+	passReqToCallback: true
+}));
+router.get('/signin',(req,res,next)=>{
+	res.render('signin');
 });
 router.get('/work',async(req,res,next)=>{
 	const profiles = await Profile.find();
@@ -40,12 +50,13 @@ router.get('/friend/:id',async(req,res,next)=>{
 	await profile.save();
 	res.render('cita');
 });
-router.post('/signup',async(req,res,next)=>{
+router.get('/perfil',(req,res,next)=>{
+	res.render('perfil');
+});
+router.post('/perfil',async(req,res,next)=>{
 	const profile = new Profile();
 	profile.name = req.body.name;
 	profile.last = req.body.last;
-	profile.user = req.body.user;
-	profile.password = req.body.password;
 	profile.profession = req.body.profession;
 	profile.religion = req.body.religion;
 	profile.year = req.body.year;
@@ -55,7 +66,6 @@ router.post('/signup',async(req,res,next)=>{
 	await profile.save();	
 	console.log(profile);
 	res.redirect('/work');
-	console.log(req.file);
 });
 
 module.exports = router;
